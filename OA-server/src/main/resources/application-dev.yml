@@ -6,3 +6,9 @@ sky:
     database: oa_system
     username: root
     password: 1234
+  alioss:
+    bucket-name: web-tlias-acarofpigs
+    endpoint: oss-cn-beijing.aliyuncs.com
+    access-key-secret: C8Dhn9NvRrODaH7oP4QUG9C17WT2Ac
+    access-key-id: LTAI5tRxGRimE17bBQAX4i8e
+

@@ -1,9 +1,7 @@
 package com.lanshan.oapojo.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +11,9 @@ import java.time.LocalDateTime;
 @Data
 @ToString
 @EqualsAndHashCode
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Announcement {
 
     /**
