@@ -43,6 +43,9 @@ public class Announcement {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime updateTime;
 
+    @NotNull
+    private Long deptId;
+
     public interface Create {
     }
 

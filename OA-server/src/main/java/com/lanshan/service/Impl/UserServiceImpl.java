@@ -4,9 +4,13 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.lanshan.PageHelper.UserPageQuery;
 import com.lanshan.Result.PageResult;
+import com.lanshan.Result.Result;
 import com.lanshan.dto.UserDto;
+import com.lanshan.entity.Announcement;
+import com.lanshan.entity.Task;
 import com.lanshan.entity.User;
 import com.lanshan.mapper.DeptMapper;
+import com.lanshan.mapper.TaskMapper;
 import com.lanshan.mapper.UserMapper;
 import com.lanshan.service.UserService;
 import com.lanshan.vo.UserVo;
@@ -27,6 +31,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     @Autowired
     private DeptMapper deptMapper;
+    @Autowired
+    private TaskMapper taskMapper;
 
     @Override
     public void save(UserDto userDto) {
@@ -67,5 +73,17 @@ public class UserServiceImpl implements UserService {
     public User getByName(String username) {
         return userMapper.getByUsername(username);
     }
+
+    @Override
+    public List<Task> getTask(Object loginId) {
+        return userMapper.getTask(loginId);
+    }
+
+    @Override
+    public Result updateTask(Integer id) {
+        taskMapper.updateStatus(id);
+        return Result.success("修改进度成功");
+    }
+
 
 }

@@ -2,6 +2,7 @@ package com.lanshan.service.Impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.lanshan.PageHelper.AnnouncementPageQuery;
 import com.lanshan.PageHelper.UserPageQuery;
 import com.lanshan.Result.PageResult;
 import com.lanshan.entity.Dept;
@@ -32,6 +33,15 @@ public class DeptServiceImpl implements DeptService {
         PageHelper.startPage(userPageQuery.getPage(), userPageQuery.getPageSize());
 
         Page<User> page = userMapper.pageQuery(userPageQuery);
+        long total = page.getTotal();
+        List<User> users = page.getResult();
+
+        return new PageResult(total,users);
+    }
+    public PageResult pageQueryAnnouncement(AnnouncementPageQuery announcementPageQuery){
+        PageHelper.startPage(announcementPageQuery.getPage(), announcementPageQuery.getPageSize());
+
+        Page<User> page = deptMapper.PageQuery(announcementPageQuery.getDeptId());
         long total = page.getTotal();
         List<User> users = page.getResult();
 

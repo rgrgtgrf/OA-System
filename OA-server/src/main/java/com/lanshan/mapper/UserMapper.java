@@ -1,11 +1,17 @@
 package com.lanshan.mapper;
 
 import com.github.pagehelper.Page;
+import com.lanshan.PageHelper.AnnouncementPageQuery;
 import com.lanshan.PageHelper.UserPageQuery;
+import com.lanshan.Result.Result;
+import com.lanshan.entity.Announcement;
+import com.lanshan.entity.Task;
 import com.lanshan.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -20,4 +26,10 @@ public interface UserMapper {
     User getByUsername(String username);
 
     Page<User> pageQuery(UserPageQuery userPageQuery);
+
+    @Insert("INSERT INTO announcement (title,content,create_time,update_time,ano_dept_id)"
+    +"VALUES (#{title},#{content},#{createTime},#{updateTime},#{deptId})")
+    void saveAnnouncement(Announcement announcement);
+    @Select("select * from task where user_id = #{loginId}")
+    List<Task> getTask(Object loginId);
 }
