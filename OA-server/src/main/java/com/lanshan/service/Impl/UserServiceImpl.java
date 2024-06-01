@@ -14,8 +14,8 @@ import com.lanshan.mapper.TaskMapper;
 import com.lanshan.mapper.UserMapper;
 import com.lanshan.service.UserService;
 import com.lanshan.vo.UserVo;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.xmlbeans.impl.xb.xsdschema.Attribute;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,11 +75,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @ApiOperation("获取当前工作")
     public List<Task> getTask(Object loginId) {
         return userMapper.getTask(loginId);
     }
 
     @Override
+    @ApiOperation("修改工作进度")
     public Result updateTask(Integer id) {
         taskMapper.updateStatus(id);
         return Result.success("修改进度成功");

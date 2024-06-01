@@ -6,6 +6,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import javax.validation.groups.ConvertGroup;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -16,6 +20,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel("用户实体类")
 public class User {
     /**
      * 用户ID
@@ -33,6 +38,7 @@ public class User {
      */
     @NotBlank(message = "密码不能为空", groups = {Create.class})
     @Length(min = 6, max = 20, message = "密码长度为 6 到 20 之间", groups = {Create.class, Update.class})
+    @ApiModelProperty(value = "密码" ,hidden = true)
     private String password;
     /**
      * 姓名

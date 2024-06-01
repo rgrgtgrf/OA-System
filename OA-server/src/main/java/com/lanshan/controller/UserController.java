@@ -13,6 +13,8 @@ import com.lanshan.mapper.UserMapper;
 import com.lanshan.service.DeptService;
 import com.lanshan.vo.UserVo;
 import com.lanshan.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
@@ -24,11 +26,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @Slf4j
+@Api(tags = "员工相关接口")
 public class UserController {
     @Autowired
     private UserService userService;
 
     @GetMapping("/{id}")@SaCheckRole("admin")
+    @ApiOperation("通过id查询员工")
     public Result<UserVo> getById(@PathVariable long id) {
         log.info("根据id查询员工：{}", id);
         UserVo uservo = userService.getById(id);
@@ -36,6 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/{username}")@SaCheckRole("admin")
+    @ApiOperation("通过用户名查询员工")
     public Result<UserVo> getById(@PathVariable String username) {
         log.info("根据id查询员工：{}", username);
         UserVo uservo = userService.getByUsername(username);
@@ -43,6 +48,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
+    @ApiOperation("用户登录")
     public Result<String> login(String username, String password){
         User user = userService.getByName(username);
         if(user.getPassword().equals(DigestUtils.md5DigestAsHex(password.getBytes()))){
@@ -53,17 +59,22 @@ public class UserController {
     }
 
     @PostMapping("/logout")@SaCheckLogin
+    @ApiOperation("用户退出")
     public Result<String> logout(){
+        StpUtil.logout();
         return Result.success("登陆成功");
     }
 
     @PostMapping("/register")@SaCheckRole("admin")
+    @ApiOperation("注册账号")
     public Result save(@Validated@RequestBody UserDto userDto){
         log.info("注册账号+{}",userDto.getUsername());
         userService.save(userDto);
         return Result.success();
     }
+
     @GetMapping("/page")@SaCheckRole("admin")
+    @ApiOperation("分页查询所有员工")
     public Result<PageResult> page(@RequestBody UserPageQuery userPageQuery){
         log.info("员工分页查询，参数为：{}", userPageQuery);
         PageResult pageResult = userService.pageQuery(userPageQuery);
@@ -71,6 +82,7 @@ public class UserController {
     }
 
     @GetMapping("/task")
+    @ApiOperation("")
     public List<Task> TaskQuery(){
         return userService.getTask(StpUtil.getLoginId());
     }
