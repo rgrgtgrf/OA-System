@@ -15,7 +15,7 @@ public class RequestChange {
 
     private int id;
 
-    // 0 为请求失败 1 为审核中 2 为成功
+    // 0 为请求失败 1 为部门审核中 2 为管理员审核中 3为成功
     @NotNull(message = "状态不能为空")
     private int status;
 

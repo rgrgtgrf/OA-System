@@ -3,6 +3,8 @@ package com.lanshan.controller;
 import cn.dev33.satoken.annotation.SaCheckRole;
 import com.lanshan.Result.Result;
 import com.lanshan.utils.AliOssUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +22,7 @@ import java.util.UUID;
 @RequestMapping("/user/common")
 @Slf4j
 @SaCheckRole("admin")
+@Api(tags = "通用接口")
 public class CommonController {
 
     @Autowired
@@ -31,6 +34,7 @@ public class CommonController {
      * @return
      */
     @PostMapping("/upload")
+    @ApiOperation("上传文件（用户头像）")
     public Result<String> upload(MultipartFile file){
         log.info("文件上传：{}",file);
 
