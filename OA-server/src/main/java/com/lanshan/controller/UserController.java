@@ -49,10 +49,10 @@ public class UserController {
 
     @PostMapping("/login")
     @ApiOperation("用户登录")
-    public Result<String> login(String username, String password){
+    public Result<String> login(String username, String password,boolean status){
         User user = userService.getByName(username);
         if(user.getPassword().equals(DigestUtils.md5DigestAsHex(password.getBytes()))){
-            StpUtil.login(user.getId());
+            StpUtil.login(user.getId(),status);
             return Result.success("登录成功");
         }
         return Result.error("登陆失败");
