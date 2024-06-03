@@ -32,4 +32,6 @@ public interface UserMapper {
     void saveAnnouncement(Announcement announcement);
     @Select("select * from task where user_id = #{loginId}")
     List<Task> getTask(Object loginId);
+
+    User updateUser(User user);
 }

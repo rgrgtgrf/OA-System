@@ -14,4 +14,13 @@
         </where>
         order by create_time desc
     </select>
+    <update id="updateUser">
+        update request_add
+        <set>
+            <if test="username != null"> userName= #{username}, </if>
+            <if test="password != null"> password = #{password}</if>
+            <if test="deptId != null"> dept_id = #{deptId}</if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

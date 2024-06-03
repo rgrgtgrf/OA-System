@@ -4,6 +4,7 @@ import com.lanshan.Result.Result;
 import com.lanshan.entity.Request.RequestAdd;
 import com.lanshan.entity.Request.RequestChange;
 import com.lanshan.entity.Request.RequestLeave;
+import com.lanshan.entity.User;
 import com.lanshan.mapper.RequestMapper;
 import com.lanshan.mapper.UserMapper;
 import com.lanshan.service.RequestService;
@@ -42,6 +43,13 @@ public class RequestServiceImpl implements RequestService {
         RequestAdd request = new RequestAdd();
         request.setStatus(status);
         request.setId(id);
+        if(status == 2){
+            RequestAdd addById = requestMapper.getAddById(id);
+            User user = new User();
+            user.setId((long) addById.getUserId());
+            user.setDeptId(addById.getDeptId());
+            userMapper.updateUser(user);
+        }
         return Result.success(requestMapper.updateAdd(request));
     }
 
@@ -66,6 +74,13 @@ public class RequestServiceImpl implements RequestService {
         RequestChange request = new RequestChange();
         request.setStatus(status);
         request.setId(id);
+        if(status == 3){
+            RequestChange changeById = requestMapper.getChangeById(id);
+            User user = new User();
+            user.setId((long) changeById.getUserId());
+            user.setDeptId(changeById.getDeptId());
+            userMapper.updateUser(user);
+        }
         return Result.success(requestMapper.updateChange(request));
     }
 

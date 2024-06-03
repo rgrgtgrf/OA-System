@@ -82,11 +82,12 @@ public class UserController {
     }
 
     @GetMapping("/task")
-    @ApiOperation("")
+    @ApiOperation("查询工作")
     public List<Task> TaskQuery(){
         return userService.getTask(StpUtil.getLoginId());
     }
     @PostMapping("/submit/{id}")
+    @ApiOperation("提交工作")
     public Result submit(@Validated @RequestBody Integer id){
         return userService.updateTask(id);
     }
