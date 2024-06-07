@@ -20,4 +20,6 @@ springboot, mysql, mybatis, maven, websocket, alioss对象存储, pagehelper, sw
 ### 项目亮点
 - 使用RBAC架构，首先建立用户与角色之间的映射，再建立角色与权限的映射以减少资源的消耗
 - 使用PageHelper进行分页展示
-- 密码进行MD5加密
+- 密码进行MD5加密，具有更高的安全性
+- 用户可以选择是否记住用户（30天内保持登录状态）
+- 有聊天功能，可以上传头像
