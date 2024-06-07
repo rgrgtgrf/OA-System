@@ -14,6 +14,10 @@ springboot, mysql, mybatis, maven, websocket, alioss对象存储, pagehelper, sw
 - Common 上传文件（用户头像）的接口
 - Announcement 发布公告
 ### 学习心得
-对项目有了更深的理解， 学习了satoken的使用， 对websocket有了更多的了解， 对遇到bug有了更丰富的处理经验
+- 在从头开始写一个小项目的过程中遇到了很多很纯的错误（比如启动类放错位置导致只扫描到了.server后缀的包），同时也上网寻找到了许多解决办法，对于一般bug有了更多的的经验。
+- 学习了satoken的简单使用（权限认证，登录，登出，校验登录等简单api）
+- 对websocket有了更多的了解（但貌似我找的教程中难度主要在前端？）
 ### 项目亮点
-亮点
+- 使用RBAC架构，首先建立用户与角色之间的映射，再建立角色与权限的映射以减少资源的消耗
+- 使用PageHelper进行分页展示
+- 密码进行MD5加密
