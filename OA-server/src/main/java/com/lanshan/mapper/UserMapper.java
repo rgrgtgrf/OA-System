@@ -34,4 +34,6 @@ public interface UserMapper {
     List<Task> getTask(Object loginId);
 
     User updateUser(User user);
+    @Select("SELECT id FROM user ORDER BY id DESC LIMIT 1")
+    Long getLastId();
 }

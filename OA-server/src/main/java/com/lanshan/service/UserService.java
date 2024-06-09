@@ -25,4 +25,6 @@ public interface UserService {
     List<Task> getTask(Object loginId);
 
     Result updateTask(Integer id);
+
+    void updateuser(UserDto userDto);
 }

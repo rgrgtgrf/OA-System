@@ -4,6 +4,7 @@ import cn.dev33.satoken.annotation.SaCheckRole;
 import com.lanshan.Result.Result;
 import com.lanshan.entity.Announcement;
 import com.lanshan.service.AnnouncementService;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,6 +25,7 @@ public class AnnouncementController {
     private AnnouncementService annoService;
 
     @PostMapping("/release")@SaCheckRole("admin")
+    @ApiOperation("发布公告")
     public Result release(@Validated @RequestBody Announcement announcement){
         log.info("发布公告+{}",announcement);
         annoService.release(announcement);

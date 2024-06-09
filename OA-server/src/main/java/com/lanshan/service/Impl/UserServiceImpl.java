@@ -87,5 +87,15 @@ public class UserServiceImpl implements UserService {
         return Result.success("修改进度成功");
     }
 
+    @Override
+    public void updateuser(UserDto userDto) {
+        User user = new User();
+        BeanUtils.copyProperties(userDto,user);
+        user.setCreateTime(LocalDateTime.now());
+        user.setUpdateTime(LocalDateTime.now());
+        user.setId(userMapper.getLastId()+1);
+        userMapper.insert(user);
+    }
+
 
 }

@@ -91,4 +91,10 @@ public class UserController {
     public Result submit(@Validated @RequestBody Integer id){
         return userService.updateTask(id);
     }
+    @PostMapping("/registeruser")
+    @ApiOperation("新增员工")
+    public Result registerUser(@Validated @RequestBody UserDto userDto){
+        userService.updateuser(userDto);
+        return Result.success("注册成功");
+    }
 }
